@@ -1,0 +1,92 @@
+Install
+--------
+apt-get install git
+apt-get install vim vim-puppet
+vim-addons install puppet
+
+
+Configure
+----------
+# who gets credits for the changes and what e-mail to use
+git config --global user.name "Jurgen Lamsens"
+git config --global user.email "jurgen.lamsens@telenet.be"
+# line ending prefs
+git config --global core.autocrlf input
+git config --global core.safecrlf true
+# pretty command line colors
+git config --global color.ui true
+
+
+Help
+------
+git help
+
+git help config
+git config --help
+man git-config
+
+
+New repo
+---------
+mkdir dir
+cd dir
+# adds 'local' repo in .git/stores git metadata
+git init
+
+
+Work flow
+----------
+# create new file
+touch readme.txt
+# 1 untracked file
+git status
+
+# add file to staging area
+git add readme.txt
+
+# commit file to repository
+git commit -m "created readme"
+# no new files since last commit
+git status
+
+# modify file
+vi readme.txt
+# create new file
+touch license.txt
+# 1 modified, 1 untracked file since last commit
+git status
+
+# add multiple files to staging area
+# add file by file
+git add readme.txt
+git add license.txt
+# add both files at once
+git add readme.txt license.txt
+# adds all new or modified files
+git add --all
+# adds all txt files in current directory
+git add *.txt
+# new file license and modified file readme
+git status
+
+git add docs/*.txt	# add all txt files in docs directory
+git add docs/		# add all files in the docs directory
+git add "*.txt" 	# add all txt files in the whole project
+git add . 		# add all changes to files in the current directory and below
+
+# use past or present tence ? "Create file" or "Created file" ?
+git commit -m "Added license and finished readme"
+
+
+Timeline history
+-----------------
+git log
+git log --pretty=oneline
+git log --pretty=oneline --max-count=2
+git log --pretty=oneline --since='5 minutes ago'
+git log --pretty=oneline --until='5 minutes ago'
+git log --pretty=oneline --author="Jurgen Lamsens"
+git log --pretty=oneline --all
+git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
+git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+apt-get install gitk
