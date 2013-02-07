@@ -90,3 +90,62 @@ git log --pretty=oneline --all
 git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
 git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
 apt-get install gitk
+git log -p -2
+
+
+Clone a repo
+-------------
+# creates dir git-info
+git clone git@github.com:jlamsens/git-info.git
+# creates dir othername
+git clone git@github.com:jlamsens/git-info.git othername
+
+
+Ignore stuff
+-------------
+# create .gitignore
+
+# contents:
+# a comment - this is ignored
+*.a       # no .a files
+!lib.a    # but do track lib.a, even though you're ignoring .a files above
+/TODO     # only ignore the root TODO file, not subdir/TODO
+build/    # ignore all files in the build/ directory
+doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+
+
+Various
+--------
+# what you’ve changed but not yet staged / compare what is in your working directory with what is in your staging area
+git diff
+# compare your staged changes to your last commit
+git diff --cached
+# puts the diff of your change in the editor
+git commit -v
+# avoid doing 'git add file' bedore 'git commit -m "new file"'
+git commit -a -m "new file"
+# removing files
+git rm file.txt
+# remove an accidently staged file
+git rm --cached file.a
+# renaming a file
+git mv file file.txt
+
+mv file file.txt
+git rm file
+git add file.txt
+
+# still only one commit
+git commit -m 'initial commit'
+git add forgotten_file
+git commit --amend
+
+
+Remotes
+--------
+# showing your remotes
+git remote
+git remote -v
+git remote add [remote-name] git@github.com:jlamsens/try_git.git
+# get data from remote projects
+git fetch [remote-name]
