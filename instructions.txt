@@ -112,10 +112,18 @@ git commit -m "commit2: modified c1.txt"
 git status
 
 # history so far
-git hist
+git log
+git log --pretty=oneline
+git log --pretty=oneline --max-count=2
+git log --pretty=oneline --since='5 minutes ago'
+git log --pretty=oneline --until='5 minutes ago'
+git log --pretty=oneline --author="Jurgen Lamsens"
+git log --pretty=oneline --all
+git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
+git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+git log -p -2
 
-
-
+apt-get install gitk
 
 
 
@@ -150,19 +158,7 @@ git add . 		# add all changes to files in the current directory and below
 git commit -m "Added license and finished readme"
 
 
-Timeline history
------------------
-git log
-git log --pretty=oneline
-git log --pretty=oneline --max-count=2
-git log --pretty=oneline --since='5 minutes ago'
-git log --pretty=oneline --until='5 minutes ago'
-git log --pretty=oneline --author="Jurgen Lamsens"
-git log --pretty=oneline --all
-git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
-git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
-apt-get install gitk
-git log -p -2
+
 
 
 Clone a repo
