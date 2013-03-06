@@ -58,39 +58,41 @@ Work flow
 ----------
 # create 'new' file
 touch c1.txt
-# result: 1 ... untracked/unstaged file
+# result: 1 untracked/unstaged 'new' file, ready to be tracked/staged
 git status
 
   # delete 'new' file
   rm c1.txt
   # result: nothing to commit
   git status
-  # now repeat previous step and skip this one
+  # now repeat previous steps and skip this one
 
 # track/stage 'new' file
 git add c1.txt
-# result: 1 ... file tracked/staged, ready to be committed
+# result: 1 tracked/staged 'new' file, ready to be committed
 git status
 
-  # untrack/unstage file
+  # untrack/unstage 'new' file
   git rm --cached c1.txt
-  # result: again 1 untracked/unstaged file
+  # result: again 1 untracked/unstaged 'new' file, ready to be tracked/staged
   git status
-  # now repeat previous step and skip this one
+  # now repeat previous steps and skip this one
 
-# commit file
+# commit 'new' file
 git commit -m "commit1: added c1.txt"
-# result: no new files since last commit (working directory clean)
+# result: no 'new' files since last commit (working directory clean)
 git status
 
 # modify file
 vi c1.txt
-# result: 1 modified file, ready to be tracked/staged
+# result: 1 untracked/unstaged 'modified' file, ready to be tracked/staged
+# git status
 
-  # undo changes
+  # undo modification
   git checkout -- c1.txt
   # result: modification gone, again nothing to commit (working directory clean)
-  # now repeat previous step and skip this one
+  git status
+  # now repeat previous steps and skip this one
 
 # track/stage 'modified' file again
 git add c1.txt
@@ -99,8 +101,9 @@ git status
 
   # untrack/unstage file
   # mind the difference with the previous unstage, where the file was not yet committed
+  # do not use 'git rm --cached c1.txt' !!!
   git reset HEAD c1.txt
-  # result: 1 modified file tracked/staged, ready to be committed
+  # result: 1 'modified' file tracked/staged, ready to be committed
   # now repeat previous step and skip this one
 
 # commit file again
@@ -109,8 +112,7 @@ git commit -m "commit2: modified c1.txt"
 git status
 
 # history so far
-...
-
+git hist
 
 
 
