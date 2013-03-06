@@ -1,8 +1,15 @@
 Install
 --------
 apt-get install git
-apt-get install vim vim-puppet
-vim-addons install puppet
+
+
+Help
+------
+git help
+
+git help config
+git config --help
+man git-config
 
 
 Configure
@@ -15,15 +22,8 @@ git config --global core.autocrlf input
 git config --global core.safecrlf true
 # pretty command line colors
 git config --global color.ui true
-
-
-Help
-------
-git help
-
-git help config
-git config --help
-man git-config
+# result
+ls -larth ~/.gitconfig
 
 
 New repo
@@ -37,10 +37,10 @@ Work flow
 ----------
 # create new file
 touch readme.txt
-# 1 untracked file
+# result: 1 untracked file
 git status
 
-# add file to staging area
+# add file to staging area (track file)
 git add readme.txt
 
 # commit file to repository
