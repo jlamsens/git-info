@@ -30,9 +30,8 @@ New repo
 ---------
 mkdir dir
 cd dir
-# adds 'local' repo in .git/stores git metadata
+# adds 'local' repo in .git (stores git metadata)
 git init
-
 
 Work flow
 ----------
