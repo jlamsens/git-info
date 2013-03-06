@@ -36,20 +36,53 @@ git init
 Work flow
 ----------
 # create new file
-touch readme.txt
-# result: 1 untracked file
+touch c1.txt
+# result: 1 ... untracked/unstaged file
 git status
 
-# add file to staging area (track file)
-git add readme.txt
+  # delete new file
+  rm c1.txt
+  # result: nothing to commit
+  git status
+  # now repeat previous step and skip this one
+
+# add file to staging area (track/stage file)
+git add c1.txt
+# result: 1 ... file tracked/staged, ready to be committed
+git status
+
+  # untrack/unstage file
+  git rm --cached c1.txt
+  # result: again 1 untracked/unstaged file
+  git status
+  # now repeat previous step and skip this one
 
 # commit file to repository
-git commit -m "created readme"
-# no new files since last commit
+git commit -m "commit1: added c1.txt"
+# result: no new files since last commit (working directory clean)
 git status
 
 # modify file
-vi readme.txt
+vi c1.txt
+# result: 1 modified file, ready to be tracked/staged
+
+  # undo changes
+  git checkout -- c1.txt
+  # result: modification gone, again nothing to commit (working directory clean)
+  # now repeat previous step and skip this one
+
+# add file to staging area again (track/stage file)
+git add c1.txt
+# result: 1 modified file tracked/staged, ready to be committed
+git status
+
+  # untrack/unstage file
+  # mind the difference with the previous unstage, where the file was not yet committed
+  git reset HEAD c1.txt
+  # result: 
+
+
+
 # create new file
 touch license.txt
 # 1 modified, 1 untracked file since last commit
