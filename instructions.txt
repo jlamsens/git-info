@@ -21,11 +21,21 @@ git config --global core.autocrlf input
 git config --global core.safecrlf true
 # pretty command line colors
 git config --global color.ui true
+
 # result
 ls -larth ~/.gitconfig
-# some interesting aliases
-...
-...
+
+# add some interesting aliases
+cat >> ~/.gitconfig << _EOF_
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+_EOF_
 
 
 New repo
