@@ -6,7 +6,6 @@ apt-get install git
 Help
 ------
 git help
-
 git help config
 git config --help
 man git-config
@@ -24,6 +23,9 @@ git config --global core.safecrlf true
 git config --global color.ui true
 # result
 ls -larth ~/.gitconfig
+# some interesting aliases
+...
+...
 
 
 New repo
@@ -33,20 +35,29 @@ cd dir
 # adds 'local' repo in .git (stores git metadata)
 git init
 
+
+Terminology
+------------
+working directory = ...
+commit = add to repository
+track/stage = add to staging area
+...
+
+
 Work flow
 ----------
-# create new file
+# create 'new' file
 touch c1.txt
 # result: 1 ... untracked/unstaged file
 git status
 
-  # delete new file
+  # delete 'new' file
   rm c1.txt
   # result: nothing to commit
   git status
   # now repeat previous step and skip this one
 
-# add file to staging area (track/stage file)
+# track/stage 'new' file
 git add c1.txt
 # result: 1 ... file tracked/staged, ready to be committed
 git status
@@ -57,7 +68,7 @@ git status
   git status
   # now repeat previous step and skip this one
 
-# commit file to repository
+# commit file
 git commit -m "commit1: added c1.txt"
 # result: no new files since last commit (working directory clean)
 git status
@@ -71,15 +82,32 @@ vi c1.txt
   # result: modification gone, again nothing to commit (working directory clean)
   # now repeat previous step and skip this one
 
-# add file to staging area again (track/stage file)
+# track/stage 'modified' file again
 git add c1.txt
-# result: 1 modified file tracked/staged, ready to be committed
+# result: 1 'modified' file tracked/staged, ready to be committed
 git status
 
   # untrack/unstage file
   # mind the difference with the previous unstage, where the file was not yet committed
   git reset HEAD c1.txt
-  # result: 
+  # result: 1 modified file tracked/staged, ready to be committed
+  # now repeat previous step and skip this one
+
+# commit file again
+git commit -m "commit2: modified c1.txt"
+# result: 1 'modified' file committed, again nothing to commit (working directory clean)
+git status
+
+# history so far
+...
+
+
+
+
+
+
+
+
 
 
 
