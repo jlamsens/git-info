@@ -56,6 +56,7 @@ track/stage = add to staging area
 
 Work flow
 ----------
+## NEW
 # create 'new' file
 touch c1.txt
 # result: 1 untracked/unstaged 'new' file, ready to be tracked/staged
@@ -78,11 +79,12 @@ git status
   git status
   # now repeat previous steps and skip this one
 
-# commit 'new' file
+# commit 'new' file (flag -m = commit message)
 git commit -m "commit1: added c1.txt"
 # result: no 'new' files since last commit (working directory clean)
 git status
 
+## MODIFY
 # modify file
 vi c1.txt
 # result: 1 untracked/unstaged 'modified' file, ready to be tracked/staged
@@ -126,46 +128,52 @@ git log -p -2
 apt-get install gitk
 
 
+## MULTIPLE FILES
+# prepare add multiple files to staging area
+mkdir subdir
+touch subdir/c{2,3}.txt
+touch c4.txt
 
-
-
-
-
-# create new file
-touch license.txt
-# 1 modified, 1 untracked file since last commit
-git status
-
-# add multiple files to staging area
 # add file by file
-git add readme.txt
-git add license.txt
-# add both files at once
-git add readme.txt license.txt
-# adds all new or modified files
+git add subdir/c2.txt
+git add subdir/c3.txt
+git add c4.txt
+
+# add all files at once
+git add subdir/c2.txt subdir/c3.txt c4.txt
+
+# adds all new or modified files (recursive = including subdirs!)
 git add --all
-# adds all txt files in current directory
+
+# adds all txt files in current directory (not recursive!)
 git add *.txt
-# new file license and modified file readme
-git status
 
-git add docs/*.txt	# add all txt files in docs directory
-git add docs/		# add all files in the docs directory
-git add "*.txt" 	# add all txt files in the whole project
-git add . 		# add all changes to files in the current directory and below
+# add all txt files in 'subdir' directory
+git add subdir/*.txt
 
-# use past or present tence ? "Create file" or "Created file" ?
-git commit -m "Added license and finished readme"
+# add all files in the 'subdir' directory
+git add docs/
 
+# add all txt files in the current directory and below (recursive)
+git add "*.txt"
 
+# add all changes to files in the current directory and below (recursive)
+git add .
 
+# ooops, forgot to commit a file
+# first commit subdir
+git add subdir/
+git commit -m "commit3: added all txt files"
+# now add 'forgotten file' to previous commit
+git add c4.txt
+git commit -amend
 
 
 Clone a repo
 -------------
-# creates dir git-info
+# creates dir 'git-info' in `pwd`
 git clone git@github.com:jlamsens/git-info.git
-# creates dir othername
+# creates dir '`pwd`\othername'
 git clone git@github.com:jlamsens/git-info.git othername
 
 
@@ -179,7 +187,7 @@ Ignore stuff
 !lib.a    # but do track lib.a, even though you're ignoring .a files above
 /TODO     # only ignore the root TODO file, not subdir/TODO
 build/    # ignore all files in the build/ directory
-doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+subdir/*.txt # ignore subdir/notes.txt, but not subdir/anothersubdir/file.txt
 
 
 Various
@@ -190,23 +198,22 @@ git diff
 git diff --cached
 # puts the diff of your change in the editor
 git commit -v
-# avoid doing 'git add file' bedore 'git commit -m "new file"'
+# avoid doing 'git add file' bedore 'git commit -m "add file"' (does not work ???)
 git commit -a -m "new file"
 # removing files
 git rm file.txt
+git commit -m "delete file.txt from repository"
 # remove an accidently staged file
 git rm --cached file.a
 # renaming a file
 git mv file file.txt
+git commit -m "renamed file"
 
+# this is the same
 mv file file.txt
 git rm file
 git add file.txt
-
-# still only one commit
-git commit -m 'initial commit'
-git add forgotten_file
-git commit --amend
+git commit -m "renamed file"
 
 
 Remotes
