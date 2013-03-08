@@ -48,6 +48,16 @@ cat >> ~/.gitconfig << _EOF_
   type = cat-file -t
   dump = cat-file -p
 _EOF_
+# or this way
+git config --global alias.co checkout
+
+# nice 'unstaging' alias
+git config --global alias.unstage 'reset HEAD --'
+# see last commit
+git config --global alias.last 'log -1 HEAD'
+# run external command (exclamation)
+git config --global alias.visual '!gitk'
+
 
 # or put shell aliases in your .profile/.bash_aliases/...
 alias gs='git status '
@@ -191,6 +201,35 @@ git commit -m "commit3: added all txt files"
 # now add 'forgotten file' to previous commit
 git add c4.txt
 git commit -amend
+
+
+Tagging
+--------
+# ANNOTATED
+# create annotated tag
+git tag -a v1.4 -m 'my version 1.4'
+# show tag data along with commit
+git show v1.4
+# create signed tag (need private GPG key)
+git tag -s v1.5 -m 'my signed 1.5 tag'
+# verify signed tag (need signer's public key)
+git tag -v v1.4.2.1
+
+# LIGHTWEIGHT
+# create lightweight tag
+git tag v1.4-lw
+
+# add tag after commit (specify the commit checksum)
+git tag -a v1.2 -m 'version 1.2' 9fceb02(...)
+
+# explicitly push tag to server (does not transfer tags by default)
+git push origin v1.5
+git push origin --tags
+
+# list available tags
+git tag
+# list particular pattern
+git tag -l 'v1.4.2.*'
 
 
 Clone a repo
