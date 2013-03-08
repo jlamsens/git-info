@@ -21,9 +21,20 @@ git config --global core.autocrlf input
 git config --global core.safecrlf true
 # pretty command line colors
 git config --global color.ui true
+# favorite editor
+git config --global core.editor vim
+# favorite diff tool
+git config --global merge.tool vimdiff
 
-# result
+# result: user-specific config file
 ls -larth ~/.gitconfig
+# global config file possible: /etc/gitconfig
+# repo config file possible: .git/config
+
+# list all settings: last value is used for each unique key !
+git config --list
+# check specific key
+git config user.name
 
 # add some interesting aliases
 cat >> ~/.gitconfig << _EOF_
