@@ -195,17 +195,23 @@ git commit -amend
 
 Clone a repo
 -------------
-# creates dir 'git-info' in `pwd` (read only)
+# read-only (pull only)
+# creates dir 'git-info' in `pwd`
 git clone git://github.com/jlamsens/git-info.git
 # creates dir '`pwd`\othername'
 git clone git://github.com/jlamsens/git-info.git othername
 
-# creates dir 'git-info' in `pwd` (read write)
+# read-write (pull and push)
+# creates dir 'git-info' in `pwd`
 git clone git@github.com:jlamsens/git-info.git
+
 # show remotes
 cd git-info
 git remote
 git remote -v
+
+# adding remotes
+
 
 
 Ignore stuff
