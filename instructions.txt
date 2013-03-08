@@ -9,6 +9,7 @@ git help
 git help config
 git config --help
 man git-config
+IRC: #git or #github channel
 
 
 Configure
@@ -221,7 +222,7 @@ git diff
 git diff --cached
 # puts the diff of your change in the editor
 git commit -v
-# avoid doing 'git add file' bedore 'git commit -m "add file"' (does not work ???)
+# avoid doing 'git add file' bedore 'git commit -m "add file"' (only for files that are already tracked/staged)
 git commit -a -m "new file"
 # removing files
 git rm file.txt
