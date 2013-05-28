@@ -147,6 +147,10 @@ git commit -m "commit2: modified c1.txt"
 # result: 1 'modified' file committed, again nothing to commit (working directory clean)
 git status
 
+# what has changed in the last commit
+git whatchanged -p -n 1
+
+
 # history so far
 git log
 git log --pretty=oneline
